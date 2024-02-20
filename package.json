@@ -16,22 +16,46 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/CesiumGS/cesium-webpack-example.git"
+    "url": "https://github.com/CesiumGS/cesium-vite-example.git"
   },
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack serve --config webpack.config.js --open"
-  },
+    "prepare": "husky install",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "eslint": "eslint \"./**/*.js\" \"./**/*.html\" --cache --quiet",
+    "prettier": "prettier --write --no-config \"**/*\"",
+    "prettier-check": "prettier --check --no-config \"**/*\""
+  }
+,
   "devDependencies": {
-    "cesium": "^1.97.0",
+    "cesium": "^1.114.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "style-loader": "^3.2.1",
     "url-loader": "^4.1.1",
+    "vite": "^5.1.3",
+    "vite-plugin-static-copy": "^1.0.1",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.3.1"
-  }
+    "webpack-dev-server": "^4.3.1",
+    "eslint": "^8.56.0",
+    "eslint-config-cesium": "^10.0.2",
+    "eslint-plugin-es": "^4.1.0",
+    "eslint-plugin-html": "^7.1.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.2.4"
+  },
+  "dependencies": {
+  "cesium": "^1.114.0"
+  },
+  "lint-staged": {
+"*.{js,html}": [
+"eslint --cache --quiet",
+"prettier --write --no-config"
+]
+}
 }
