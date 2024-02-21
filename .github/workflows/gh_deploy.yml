@@ -29,9 +29,9 @@ jobs:
         run: yarn build
 
       - name: Upload production-ready build files
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: github-pages
+#          name: github-pages
           path: ./dist
 
   deploy:
