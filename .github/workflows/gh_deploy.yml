@@ -6,16 +6,18 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
       id-token: write
     environment:
-      name: BASE_URL
-      url: sheild_mapui
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+#    - name: BASE_URL
+#      url:  ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -30,42 +32,17 @@ jobs:
       - name: Build project
 #        run: npm run build
         run: yarn build
-
+      - name: Configure Pages
+        uses:
+          actions/configure-pages@v4
       - name: Upload production-ready build files
         uses: actions/upload-pages-artifact@v3
         with:
 #          name: github-pages
           path: ./dist
-
-  deploy:
-    name: Deploy
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    permissions:
-      contents: read
-      pages: write
-      id-token:
-        write
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-#      - name: Download artifact
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: github-pages
-#          path: ./dist
-
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_dir: ./dist
-      - name: Configure Pages
-        uses:
-          actions/configure-pages@v4
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+
+
