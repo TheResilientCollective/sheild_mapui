@@ -45,11 +45,11 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: ./dist
+#      - name: Download artifact
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: github-pages
+#          path: ./dist
 
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v3
