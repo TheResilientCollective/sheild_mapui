@@ -69,13 +69,13 @@ onMounted(() => {
         }
     );
 
-    readyObj.viewer.camera.flyTo({
-      destination : Cartesian3.fromDegrees(-117.3, 32.70, 1500),
-      orientation : {
-        heading : Math.toRadians(90.0),
-        pitch : Math.toRadians(-20.0),
-      }
-    });
+    // readyObj.viewer.camera.flyTo({
+    //   destination : Cartesian3.fromDegrees(-117.3, 32.70, 1500),
+    //   orientation : {
+    //     heading : Math.toRadians(90.0),
+    //     pitch : Math.toRadians(-20.0),
+    //   }
+    // });
 
   })
 })
