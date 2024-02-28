@@ -5,6 +5,7 @@ import {ref, onMounted} from 'vue'
 import {VcViewer} from 'vue-cesium'
 import type {VcReadyObject} from 'vue-cesium/es/utils/types'
 
+
 import {
   Cartesian2,
   Cartesian3,
@@ -20,7 +21,7 @@ import {
   createGooglePhotorealistic3DTileset,
   IonResource,
   GeoJsonDataSource,
-  Math
+
 } from "cesium";
 
 const ionToken = import.meta.env.VITE_APP_CESIUM_ION_TOKEN;
@@ -131,9 +132,14 @@ function sync2DView() {
   // The center of the view is the point that the 3D camera is focusing on
   const cesiumObject = viewerRef.value.getCesiumObject();
   const cesium2DObject = mapRef.value.getCesiumObject();
+  // Cesium.Math got accidentialy imported. No Math.floor in that library
+  let w = cesiumObject.container.clientWidth / 2;
+  w = Math.floor(w);
+  let h = cesiumObject.container.clientHeight / 2;
+  h = Math.floor(h)
   const viewCenter = new Cartesian2(
-    Math.floor(cesiumObject.container.clientWidth / 2),
-    Math.floor(cesiumObject.container.clientHeight / 2)
+   w,
+    h
   );
   // Given the pixel in the center, get the world position
   const newWorldPosition = cesiumObject.camera.pickEllipsoid(
