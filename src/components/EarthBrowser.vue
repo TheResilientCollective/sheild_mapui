@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import 'vue-cesium/dist/index.css';
 import Splitter from 'primevue/splitter';
 import SplitterPanel from 'primevue/splitterpanel';
 import {ref, onMounted} from 'vue'
@@ -314,6 +314,125 @@ async function  loadNetCDF(filePath: string) {
 
         </vc-overview-map>
       </vc-viewer>
+      <div class="wind-toolbar">
+<!--        <el-row>-->
+<!--          <el-button type="danger" round @click="unload">Unload</el-button>-->
+<!--          <el-button type="danger" round @click="load">Load</el-button>-->
+<!--          <el-button type="danger" round @click="reload">Reload</el-button>-->
+<!--        </el-row>-->
+        <v-row>
+          <v-col>
+            <div class="block">
+              <span>Layers</span>
+              <v-checkbox
+                  v-model="showWind"
+                  label="Show Wind"
+              ></v-checkbox>
+
+              <v-expansion-panels>
+                <v-expansion-panel
+                    title="Wind Parameters"
+                                   >
+                  <v-expansion-panel-text>
+    <span>maxParticles</span>
+    <v-slider v-model="particleSystemOptions.maxParticles" :min="1" :max="65536" :step="1">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.maxParticles"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>particleHeight</span>
+    <v-slider v-model="particleSystemOptions.particleHeight" :min="1" :max="10000" :step="1">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.particleHeight"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>fadeOpacity</span>
+    <v-slider v-model="particleSystemOptions.fadeOpacity" :min="0.90" :max="0.999" :step="0.001">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.fadeOpacity"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>dropRate</span>
+    <v-slider v-model="particleSystemOptions.dropRate" :min="0.0" :max="0.1" :step="0.001">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.dropRate"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>dropRateBump</span>
+    <v-slider v-model="particleSystemOptions.dropRateBump" :min="0.0" :max="0.2" :step="0.001">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.dropRateBump"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>speedFactor</span>
+    <v-slider v-model="particleSystemOptions.speedFactor" :min="0.5" :max="8" :step="0.1">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.speedFactor"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+    <span>lineWidth</span>
+    <v-slider v-model="particleSystemOptions.lineWidth" :min="0.01" :max="16" :step="0.01">
+      <template v-slot:append>
+        <v-text-field
+            v-model="particleSystemOptions.lineWidth"
+            density="compact"
+            style="width: 80px"
+            type="number"
+            variant="outlined"
+            hide-details
+        ></v-text-field>
+      </template>
+    </v-slider>
+                    </v-expansion-panel-text>
+                </v-expansion-panel>
+              </v-expansion-panels>
+
+            </div>
+          </v-col>
+        </v-row>
+      </div>
     </SplitterPanel>
     <SplitterPanel class="flex align-items-center justify-content-center" :size="25">
       <vc-viewer ref="mapRef" @ready="onMapReady"
@@ -331,5 +450,18 @@ async function  loadNetCDF(filePath: string) {
 </template>
 
 <style scoped>
-
+.wind-toolbar .block {
+  font-weight: 400;
+  line-height: 20px;
+  font-family: "Roboto,Noto Sans,Noto,sans-serif;"
+}
+.wind-toolbar {
+  position: absolute;
+  left: 1%;
+  top: 10%;
+  min-width: 185px;
+  z-index: 100;
+  color: #fff;
+  background-color: rgba(0,0,0,.2)
+}
 </style>
