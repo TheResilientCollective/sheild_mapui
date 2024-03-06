@@ -40,7 +40,8 @@
     "primeicons": "^6.0.1",
     "vue-cesium": "^3.2.5",
     "@cesium/engine": "^7.0.0",
-    "@cesium/widgets": "^4.5.0"
+    "@cesium/widgets": "^4.5.0",
+    "netcdfjs": "^3.0.0"
   },
   "devDependencies": {
 
