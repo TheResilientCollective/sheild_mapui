@@ -28,10 +28,23 @@
     "eslint": "eslint \"./**/*.js\" \"./**/*.html\" --cache --quiet",
     "prettier": "prettier --write --no-config \"**/*\"",
     "prettier-check": "prettier --check --no-config \"**/*\""
-  }
-,
-  "devDependencies": {
+  },
+  "dependencies": {
     "cesium": "^1.114.0",
+    "@mdi/font": "7.0.96",
+    "roboto-fontface": "*",
+    "vue": "^3.3.0",
+    "vuetify": "^3.0.0",
+    "splitpanes": "^3.1.5",
+    "primevue": "^3.49.1",
+    "primeicons": "^6.0.1",
+    "vue-cesium": "^3.2.5",
+    "@cesium/engine": "^7.0.0",
+    "@cesium/widgets": "^4.5.0",
+    "netcdfjs": "^3.0.0"
+  },
+  "devDependencies": {
+
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
@@ -47,11 +60,21 @@
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-html": "^7.1.0",
     "husky": "^8.0.3",
-    "prettier": "^3.2.4"
+    "prettier": "^3.2.4",
+    "@babel/types": "^7.23.0",
+    "@types/node": "^20.10.0",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "@vue/tsconfig": "^0.5.1",
+    "npm-run-all": "^4.1.5",
+    "cross-env": "^7.0.3",
+    "sass": "^1.69.0",
+    "typescript": "^5.3.0",
+    "unplugin-fonts": "^1.1.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vite-plugin-vuetify": "^2.0.0",
+    "vue-tsc": "^1.8.0"
   },
-  "dependencies": {
-  "cesium": "^1.114.0"
-  },
+
   "lint-staged": {
 "*.{js,html}": [
 "eslint --cache --quiet",
